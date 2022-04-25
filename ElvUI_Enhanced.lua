@@ -44,7 +44,7 @@ local function GetOptions()
 end
 
 --Showing warning message about too old versions of ElvUI
-if EEL.elvV < 12 or (EEL.elvV < EEL.elvR) then
+if EEL.elvV < 2 or (EEL.elvV < EEL.elvR) then
 	E:Delay(2, function() E:StaticPopup_Show("VERSION_MISMATCH_EEL") end)
 	return
 end
@@ -55,7 +55,7 @@ function EEL:ConfigCat()
 end
 
 function EEL:Initialize()
-	EEL:ConfigCat() 
+	EEL:ConfigCat()
 	if E.db.general.loginmessage then
 		print(format(L['ENH_LOGIN_MSG'], E["media"].hexvaluecolor, EEL.version))
 	end	

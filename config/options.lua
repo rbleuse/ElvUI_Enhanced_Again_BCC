@@ -10,13 +10,12 @@ local function configOptions()
 		type = "group",
 		name = EEL.title,
 		childGroups = "tab",
-		--desc = L["Nick test"],
         order = 6,
         args = {
 			header1 = {
 				order = 1,
 				type = "header",
-				name = format(L["%s version |cffff8000%s|r by Tevoll "], EEL.title, EEL.version),
+				name = format(L["%s version |cffff8000%s|r by Spanja "], EEL.title, EEL.version)
             }
         }
     }

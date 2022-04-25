@@ -71,7 +71,6 @@ function EQ:Initialize()
 	E.equipment = self
 	self.db = E.private.eel.equipment;
 	self:RegisterEvent("PLAYER_ENTERING_WORLD", "CheckForGearChange")
-	self:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED", "CheckForGearChange")
 	self:RegisterEvent("EQUIPMENT_SWAP_FINISHED", "EquipmentSwapFinished")
 	-- EQ:ToggleBattleground()
 end

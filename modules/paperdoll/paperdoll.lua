@@ -61,8 +61,7 @@ function PD:UpdatePaperDoll(inspect)
 
   local frame, slot, current, maximum, r, g, b
   local baseName = inspect and "Inspect" or "Character"
-  local itemLink, itemLevel, itemLevelMax
-  local avgItemLevel, avgEquipItemLevel = GetAverageItemLevel()
+  local itemLink
 
   for k, info in pairs(slots) do
     frame = _G[("%s%s"):format(baseName, k)]
@@ -73,18 +72,9 @@ function PD:UpdatePaperDoll(inspect)
         itemLink = GetInventoryItemLink(unit, slot)
 
         if itemLink then
-          if ((slot == 16 or slot == 17) and GetInventoryItemQuality(unit, slot) == LE_ITEM_QUALITY_ARTIFACT) then
-            local itemLevelMainHand = 0
-            local itemLevelOffHand = 0
-            local itemLinkMainHand = GetInventoryItemLink(unit, 16)
-            local itemLinkOffhand = GetInventoryItemLink(unit, 17)
-            if itemLinkMainHand then itemLevelMainHand = self:GetItemLevel(unit, 16 or 0) end
-            if itemLinkOffhand then itemLevelOffHand = self:GetItemLevel(unit, 17 or 0) end
-            itemLevel = math.max(itemLevelMainHand or 0, itemLevelOffHand or 0)
-          else
-            itemLevel = self:GetItemLevel(unit, slot)
-          end
-          if itemLevel and avgEquipItemLevel then
+          local _, _, _, itemLevel = GetItemInfo(itemLink)
+          local avgEquipItemLevel = itemLevel
+          if itemLevel then
             frame.ItemLevel:SetFormattedText("%s%d|r", levelColors[(itemLevel < avgEquipItemLevel-10 and 0 or (itemLevel > avgEquipItemLevel + 10 and 1 or (2)))], itemLevel)
           end
         end
